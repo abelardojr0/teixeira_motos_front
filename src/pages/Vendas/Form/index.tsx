@@ -8,7 +8,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 
 import { TitlePage } from "../../../utils/globalStyles";
-import { ContainerCadastro, FormTurmaStyled } from "./style";
+import { ContainerCadastro, DivQuantidades, FormTurmaStyled } from "./style";
 
 import { BoxInputMolecule } from "../../../components/Molecules/BoxInputMolecule";
 import { ButtonAtom } from "../../../components/Atoms/ButtonAtom";
@@ -167,7 +167,7 @@ export const VendaForm = () => {
           }}
         />
 
-        <div style={{ display: "flex", gap: "1rem" }}>
+        <DivQuantidades>
           <BoxInputMolecule
             type="number"
             htmlFor="quantidade"
@@ -188,7 +188,7 @@ export const VendaForm = () => {
             value={produtoSelecionado?.estoque || ""}
             disabled
           />
-        </div>
+        </DivQuantidades>
 
         {produtoSelecionado?.estoque === 0 && (
           <p style={{ color: "red" }}>Este produto está sem estoque.</p>

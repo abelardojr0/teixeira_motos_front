@@ -1,9 +1,9 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const Wrapper = styled.div`
   position: relative;
   margin-bottom: 16px;
-
+  width: 100%;
   label {
     display: block;
     margin-bottom: 4px;

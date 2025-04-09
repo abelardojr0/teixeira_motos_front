@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import { Produto } from '../../../utils/type';
-import { ListaResultados, Wrapper } from './style';
-import { BoxInputMolecule } from '../BoxInputMolecule';
+import React, { useState, useEffect } from "react";
+import { Produto } from "../../../utils/type";
+import { ListaResultados, Wrapper } from "./style";
+import { BoxInputMolecule } from "../BoxInputMolecule";
 
 interface BuscaProdutoProps {
   produtos: Produto[];
@@ -10,7 +10,7 @@ interface BuscaProdutoProps {
   setTermo: (valor: string) => void;
 }
 
-const HISTORICO_KEY = 'historico_busca_produto';
+const HISTORICO_KEY = "historico_busca_produto";
 
 export const BuscaProduto: React.FC<BuscaProdutoProps> = ({
   produtos,
@@ -36,7 +36,7 @@ export const BuscaProduto: React.FC<BuscaProdutoProps> = ({
     }
 
     const filtrados = produtos.filter((p) =>
-      p.nome.toLowerCase().includes(termo.toLowerCase()),
+      p.nome.toLowerCase().includes(termo.toLowerCase())
     );
 
     setResultados(filtrados);
@@ -57,7 +57,7 @@ export const BuscaProduto: React.FC<BuscaProdutoProps> = ({
   };
 
   const handleEnter = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === 'Enter' && resultados.length > 0) {
+    if (e.key === "Enter" && resultados.length > 0) {
       handleSelect(resultados[0]);
     }
   };
@@ -65,6 +65,7 @@ export const BuscaProduto: React.FC<BuscaProdutoProps> = ({
   return (
     <Wrapper>
       <BoxInputMolecule
+        fullWidth
         type="text"
         htmlFor="busca-produto"
         id="busca-produto"
@@ -92,4 +93,3 @@ export const BuscaProduto: React.FC<BuscaProdutoProps> = ({
     </Wrapper>
   );
 };
-

@@ -7,7 +7,9 @@ export const BoxInputMoleculeStyled = styled.div<{ fullWidth?: boolean }>`
   gap: 8px;
   flex-direction: column;
   color: ${cores.cor_secundaria};
-  min-width: 250px;
+  min-width: 200px;
+
+  width: ${(props) => (props.fullWidth ? "100%" : "auto")};
   ${(props) => props.fullWidth && "grid-column: 1 / -1;"}
 `;
 

@@ -183,6 +183,7 @@ export const FormStyled = styled.form`
   flex-direction: column;
   gap: 20px;
   max-width: 800px;
+  width: 100%;
   margin-top: 20px;
 `;
 

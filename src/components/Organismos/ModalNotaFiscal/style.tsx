@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import { ButtonAtom } from "../../Atoms/ButtonAtom";
 import { cores } from "../../../utils/theme";
-// Estilização
 export const Overlay = styled.div`
   position: fixed;
   top: 0;
