@@ -54,6 +54,26 @@ export function Dashboard() {
       <TitlePage>Dashboard</TitlePage>
       {resumo && lucros && (
         <>
+          <ButtonGrid>
+            <ButtonAtom onClick={() => navigate("/vendas/form")}>
+              ➕ Nova Venda
+            </ButtonAtom>
+            <ButtonAtom onClick={() => navigate("/produtos/form")}>
+              📦 Novo Produto
+            </ButtonAtom>
+            <ButtonAtom onClick={() => navigate("/produtos")}>
+              📋 Lista de Produtos
+            </ButtonAtom>
+            <ButtonAtom onClick={() => navigate("/vendas")}>
+              📊 Relatório de Vendas
+            </ButtonAtom>
+            <ButtonAtom onClick={() => navigate("/clientes/form")}>
+              👤 Novo Cliente
+            </ButtonAtom>
+            <ButtonAtom onClick={() => navigate("/clientes")}>
+              📋 Lista de Clientes
+            </ButtonAtom>
+          </ButtonGrid>
           <CardGrid>
             <InfoCard>
               <h3>🆕 Novos Clientes no Mês</h3>
@@ -115,27 +135,6 @@ export function Dashboard() {
               <span>R$ {lucros.lucroAnual.toFixed(2)}</span>
             </InfoCard>
           </CardGrid>
-
-          <ButtonGrid>
-            <ButtonAtom onClick={() => navigate("/vendas/form")}>
-              ➕ Nova Venda
-            </ButtonAtom>
-            <ButtonAtom onClick={() => navigate("/produtos/form")}>
-              📦 Novo Produto
-            </ButtonAtom>
-            <ButtonAtom onClick={() => navigate("/produtos")}>
-              📋 Lista de Produtos
-            </ButtonAtom>
-            <ButtonAtom onClick={() => navigate("/vendas")}>
-              📊 Relatório de Vendas
-            </ButtonAtom>
-            <ButtonAtom onClick={() => navigate("/clientes/form")}>
-              👤 Novo Cliente
-            </ButtonAtom>
-            <ButtonAtom onClick={() => navigate("/clientes")}>
-              📋 Lista de Clientes
-            </ButtonAtom>
-          </ButtonGrid>
         </>
       )}
     </Container>
