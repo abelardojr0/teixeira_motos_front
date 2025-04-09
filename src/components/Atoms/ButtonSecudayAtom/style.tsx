@@ -1,11 +1,9 @@
-import styled from 'styled-components';
-import { cores } from '../../../utils/theme';
+import styled from "styled-components";
 
 export const ButtonAtomStyled = styled.button`
   border: 1px solid black;
   border-radius: 8px;
   background-color: transparent;
-  color: ${cores.preto};
   padding: 15px 30px;
   font-size: 26px;
   font-weight: bold;

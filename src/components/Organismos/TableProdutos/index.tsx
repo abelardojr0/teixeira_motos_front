@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import {
   TableWrapper,
   StyledTable,
@@ -13,8 +13,8 @@ import {
   PrevIcon,
   PageText,
   NextIcon,
-} from './style';
-import { Produto } from '../../../utils/type';
+} from "./style";
+import { Produto } from "../../../utils/type";
 
 interface ProdutoTableProps {
   produtos: Produto[];
@@ -32,7 +32,7 @@ export const ProdutoTable: React.FC<ProdutoTableProps> = ({
   const indexOfFirstProduct = indexOfLastProduct - itemsPerPage;
   const currentProducts = produtos.slice(
     indexOfFirstProduct,
-    indexOfLastProduct,
+    indexOfLastProduct
   );
 
   const totalPages = Math.ceil(produtos.length / itemsPerPage);
@@ -70,13 +70,13 @@ export const ProdutoTable: React.FC<ProdutoTableProps> = ({
               <Td>{produto.marca}</Td>
               <Td>{produto.categoria}</Td>
               <Td>
-                {produto.estoque < 5
+                {produto.estoque && produto.estoque < 5
                   ? `${produto.estoque} ⚠️`
                   : produto.estoque}
               </Td>
               <Td>R$ {Number(produto.preco).toFixed(2)}</Td>
               <Td>
-                R$ {produto.custo ? Number(produto.custo).toFixed(2) : '-'}
+                R$ {produto.custo ? Number(produto.custo).toFixed(2) : "-"}
               </Td>
               <Td>
                 <ActionContainer>
