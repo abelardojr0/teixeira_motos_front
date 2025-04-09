@@ -2,8 +2,10 @@ import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import {
   Container,
   ContainerSection,
+  Direitos,
   DropdownItem,
   DropdownMenu,
+  FooterContainer,
   HeaderList,
   HeaderListItemText,
   HeaderLogoStyled,
@@ -115,58 +117,66 @@ export const Layout = () => {
   }, [checkSize]);
 
   return (
-    <Container>
-      <HeaderStyled className={open ? "" : "desativo"}>
-        <HeaderLogoStyled className={open ? "" : "desativo"} to={"/"}>
-          <img src={logo} alt="Logo" />
-        </HeaderLogoStyled>
+    <>
+      <Container>
+        <HeaderStyled className={open ? "" : "desativo"}>
+          <HeaderLogoStyled className={open ? "" : "desativo"} to={"/"}>
+            <img src={logo} alt="Logo" />
+          </HeaderLogoStyled>
 
-        <nav>
-          {checkSize === false && (
-            <MenuIcon
-              style={{ marginRight: "15px" }}
-              onClick={() => setMenuAberto(!menuAberto)}
-            />
-          )}
+          <nav>
+            {checkSize === false && (
+              <MenuIcon
+                style={{ marginRight: "15px" }}
+                onClick={() => setMenuAberto(!menuAberto)}
+              />
+            )}
 
-          {(open || menuAberto) && (
-            <HeaderList
-              ref={checkSize === false && menuAberto ? menuRef : null}
-              className={checkSize === false ? "mobile" : ""}
-            >
-              {itens.map((item) => (
-                <li key={item.path}>
-                  <HeaderListItemText
-                    className={currentPath === item.path ? "ativo" : ""}
-                    to={item.path}
-                    onClick={() => setMenuAberto(false)}
-                  >
-                    {item.icon &&
-                      cloneElement(item.icon, {
-                        className: currentPath === item.path ? "ativo" : "",
-                      })}
-                    {checkSize && item.text}
-                  </HeaderListItemText>
-                </li>
-              ))}
-              <ProfileContainer>
-                <ProfileIcon ref={profileIconRef} onClick={toggleDropdown}>
-                  {user?.initials}
-                </ProfileIcon>
-                {isDropdownOpen && (
-                  <DropdownMenu ref={dropdownRef}>
-                    <DropdownItem onClick={handleLogout}>Sair</DropdownItem>
-                  </DropdownMenu>
-                )}
-              </ProfileContainer>
-            </HeaderList>
-          )}
-        </nav>
-      </HeaderStyled>
+            {(open || menuAberto) && (
+              <HeaderList
+                ref={checkSize === false && menuAberto ? menuRef : null}
+                className={checkSize === false ? "mobile" : ""}
+              >
+                {itens.map((item) => (
+                  <li key={item.path}>
+                    <HeaderListItemText
+                      className={currentPath === item.path ? "ativo" : ""}
+                      to={item.path}
+                      onClick={() => setMenuAberto(false)}
+                    >
+                      {item.icon &&
+                        cloneElement(item.icon, {
+                          className: currentPath === item.path ? "ativo" : "",
+                        })}
+                      {checkSize && item.text}
+                    </HeaderListItemText>
+                  </li>
+                ))}
+                <ProfileContainer>
+                  <ProfileIcon ref={profileIconRef} onClick={toggleDropdown}>
+                    {user?.initials}
+                  </ProfileIcon>
+                  {isDropdownOpen && (
+                    <DropdownMenu ref={dropdownRef}>
+                      <DropdownItem onClick={handleLogout}>Sair</DropdownItem>
+                    </DropdownMenu>
+                  )}
+                </ProfileContainer>
+              </HeaderList>
+            )}
+          </nav>
+        </HeaderStyled>
 
-      <ContainerSection>
-        <Outlet />
-      </ContainerSection>
-    </Container>
+        <ContainerSection>
+          <Outlet />
+        </ContainerSection>
+        <FooterContainer>
+          <Direitos>
+            <p>© 2025 · Todos os direitos reservados.</p>
+            <p>Criado e Desenvolvido por Abelardo Júnior</p>
+          </Direitos>
+        </FooterContainer>
+      </Container>
+    </>
   );
 };

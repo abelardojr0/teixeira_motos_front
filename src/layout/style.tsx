@@ -5,6 +5,8 @@ import { cores } from "../utils/theme";
 export const Container = styled.main`
   display: flex;
   flex-direction: column;
+  min-height: 100vh;
+  justify-content: space-between;
   background: radial-gradient(
     circle,
     rgba(160, 160, 160, 1) 0%,
@@ -152,4 +154,21 @@ export const UserNameDisplay = styled.div`
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
   cursor: default;
+`;
+
+export const FooterContainer = styled.footer`
+  background-color: ${cores.cor_principal};
+  color: ${cores.texto_base};
+  padding: 20px 0;
+  /* position: fixed;
+  bottom: 0;
+  width: 100%; */
+`;
+
+export const Direitos = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  font-size: 12px;
 `;
