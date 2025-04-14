@@ -30,9 +30,9 @@ export const Layout = () => {
   const itens = [
     { text: "Home", path: "/", icon: <HomeIcon /> },
     { text: "Produtos", path: "/produtos", icon: <SportsMotorsportsIcon /> },
-    { text: "Vendas", path: "/vendas", icon: <SellIcon /> },
-    { text: "Clientes", path: "/clientes", icon: <PeopleAltIcon /> },
     { text: "Serviços", path: "/servicos", icon: <ConstructionIcon /> },
+    { text: "Clientes", path: "/clientes", icon: <PeopleAltIcon /> },
+    { text: "Vendas", path: "/vendas", icon: <SellIcon /> },
   ];
 
   const [open, setOpen] = useState<boolean>(true);

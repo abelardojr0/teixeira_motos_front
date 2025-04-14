@@ -9,6 +9,7 @@ import {
   TabelaNota,
   TotalNota,
 } from "./style";
+import logo from "../../../assets/logo.png";
 
 interface ModalNotaFiscalProps {
   venda: Venda;
@@ -27,7 +28,7 @@ export const ModalNotaFiscal: React.FC<ModalNotaFiscalProps> = ({
     const telefone = venda.cliente.telefone.replace(/\D/g, "");
     const dataFormatada = new Date(venda.createdAt!).toLocaleString();
 
-    let mensagem = `🧾 *Nota Fiscal Eletrônica*%0A`;
+    let mensagem = `🧾 *Informativo*%0A`;
     mensagem += `Cliente: *${venda.cliente.nome}*%0A`;
     mensagem += `Data: ${dataFormatada}%0A`;
     mensagem += `%0A*Itens:*%0A`;
@@ -54,10 +55,10 @@ export const ModalNotaFiscal: React.FC<ModalNotaFiscalProps> = ({
     <Overlay onClick={handleOverlayClick}>
       <Modal>
         <HeaderNota>
-          <h2>TEIXEIRA MOTOS</h2>
-          <span>CNPJ: 00.000.000/0001-00</span>
+          <img src={logo} alt="" />
+          <span>CNPJ: 58.770.803/0001-05</span>
           <span>Rua Nova Vida, 08A - Arianópolis</span>
-          <span>Nota Fiscal Eletrônica</span>
+          <span>Nota Não Fiscal Eletrônica</span>
         </HeaderNota>
 
         <hr />

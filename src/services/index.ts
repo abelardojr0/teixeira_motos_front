@@ -1,14 +1,15 @@
-import axios from 'axios';
+import axios from "axios";
 
 const api = axios.create({
-  baseURL: 'https://teixeira-motos-back.onrender.com',
+  // baseURL: " http://localhost:3000",
+  baseURL: "https://teixeira-motos-back.onrender.com",
 });
 let isRefreshing = false;
 let refreshSubscribers: any = [];
 
 api.interceptors.request.use(
   (request) => {
-    const token = localStorage.getItem('authToken');
+    const token = localStorage.getItem("authToken");
 
     if (token) {
       request.headers.Authorization = `Bearer ${token}`;
@@ -17,7 +18,7 @@ api.interceptors.request.use(
   },
   function (error) {
     return Promise.reject(error);
-  },
+  }
 );
 
 api.interceptors.response.use(
@@ -28,14 +29,14 @@ api.interceptors.response.use(
     const originalConfig = error.config;
 
     if (error?.response?.status === 403) {
-      alert('Usuário não tem permissão para a ação!');
+      alert("Usuário não tem permissão para a ação!");
     }
 
     if (
       error?.response?.status === 401 &&
       !originalConfig._retry &&
-      (sessionStorage.getItem('refreshToken') ||
-        localStorage.getItem('refreshToken'))
+      (sessionStorage.getItem("refreshToken") ||
+        localStorage.getItem("refreshToken"))
     ) {
       originalConfig._retry = true;
 
@@ -44,22 +45,22 @@ api.interceptors.response.use(
 
         try {
           const refresh =
-            sessionStorage.getItem('refreshToken') ||
-            localStorage.getItem('refreshToken');
+            sessionStorage.getItem("refreshToken") ||
+            localStorage.getItem("refreshToken");
 
-          const { data } = await api.post('/refresh-token', {
+          const { data } = await api.post("/refresh-token", {
             refresh,
           });
 
           const access_token = data.access;
           const refresh_token = data.refresh;
 
-          if (sessionStorage.getItem('authToken')) {
-            sessionStorage.setItem('authToken', access_token);
-            sessionStorage.setItem('refreshToken', refresh_token);
+          if (sessionStorage.getItem("authToken")) {
+            sessionStorage.setItem("authToken", access_token);
+            sessionStorage.setItem("refreshToken", refresh_token);
           } else {
-            localStorage.setItem('authToken', access_token);
-            localStorage.setItem('refreshToken', refresh_token);
+            localStorage.setItem("authToken", access_token);
+            localStorage.setItem("refreshToken", refresh_token);
           }
 
           // Executa todos os pedidos pendentes após a atualização do token
@@ -70,13 +71,13 @@ api.interceptors.response.use(
         } catch (_error) {
           console.log(_error);
 
-          alert('Sessão expirada. Por favor, faça login novamente.');
+          alert("Sessão expirada. Por favor, faça login novamente.");
 
-          sessionStorage.removeItem('authToken');
-          sessionStorage.removeItem('refreshToken');
+          sessionStorage.removeItem("authToken");
+          sessionStorage.removeItem("refreshToken");
 
-          localStorage.removeItem('authToken');
-          localStorage.removeItem('refreshToken');
+          localStorage.removeItem("authToken");
+          localStorage.removeItem("refreshToken");
 
           window.location.href = window.location.origin;
           return Promise.reject(_error);
@@ -94,7 +95,7 @@ api.interceptors.response.use(
     }
 
     return Promise.reject(error);
-  },
+  }
 );
 
 export default api;

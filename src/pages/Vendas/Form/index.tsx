@@ -8,7 +8,14 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 
 import { TitlePage } from "../../../utils/globalStyles";
-import { ContainerCadastro, DivQuantidades, FormTurmaStyled } from "./style";
+import {
+  BotaoAdd,
+  ContainerCadastro,
+  DivEstoque,
+  DivProduto,
+  DivServico,
+  FormTurmaStyled,
+} from "./style";
 
 import { BoxInputMolecule } from "../../../components/Molecules/BoxInputMolecule";
 import { ButtonAtom } from "../../../components/Atoms/ButtonAtom";
@@ -17,6 +24,7 @@ import { BuscaCliente } from "../../../components/Molecules/BuscaCliente";
 
 import { TabelaItensVenda } from "../../../components/Organismos/TabelaItensVenda";
 import { BuscaServico } from "../../../components/Molecules/BuscarServicos";
+import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 
 const vendaSchema = z.object({
   cliente_id: z
@@ -142,74 +150,63 @@ export const VendaForm = () => {
     <ContainerCadastro>
       <FormTurmaStyled onSubmit={handleSubmit(onSubmit)}>
         <TitlePage>Cadastrar Venda</TitlePage>
-
-        <BuscaCliente
-          clientes={clientes}
-          termo={buscaCliente}
-          setTermo={setBuscaCliente}
-          onSelect={(cliente) => {
-            setBuscaCliente(cliente.nome);
-            setValue("cliente_id", Number(cliente.id));
-          }}
-        />
-
-        {errors.cliente_id && (
-          <p style={{ color: "red" }}>{errors.cliente_id.message}</p>
-        )}
-
-        <BuscaProduto
-          produtos={produtos}
-          termo={buscaProduto}
-          setTermo={setBuscaProduto}
-          onSelect={(produto) => {
-            setBuscaProduto(produto.nome);
-            setValue("produtoSelecionadoEstoque", produto.estoque);
-          }}
-        />
-
-        <DivQuantidades>
-          <BoxInputMolecule
-            type="number"
-            htmlFor="quantidade"
-            id="quantidade"
-            children="Quantidade"
-            {...register("quantidade")}
-            error={!!errors.quantidade}
-            errorMessage={errors.quantidade?.message}
-            min="1"
-            max={produtoSelecionado?.estoque || ""}
+        <DivServico>
+          <BuscaCliente
+            clientes={clientes}
+            termo={buscaCliente}
+            setTermo={setBuscaCliente}
+            onSelect={(cliente) => {
+              setBuscaCliente(cliente.nome);
+              setValue("cliente_id", Number(cliente.id));
+            }}
           />
-
-          <BoxInputMolecule
-            type="number"
-            htmlFor="estoque"
-            id="estoque"
-            children="Estoque"
-            value={produtoSelecionado?.estoque || ""}
-            disabled
+          {errors.cliente_id && (
+            <p style={{ color: "red" }}>{errors.cliente_id.message}</p>
+          )}
+          <BuscaServico
+            servicos={servicos}
+            termo={buscaServico}
+            setTermo={setBuscaServico}
+            onSelect={(servico) => {
+              setBuscaServico(servico.nome);
+            }}
           />
-        </DivQuantidades>
+          <BotaoAdd onClick={handleAddServico}>
+            <AddCircleOutlineIcon />
+          </BotaoAdd>
+        </DivServico>
 
-        {produtoSelecionado?.estoque === 0 && (
-          <p style={{ color: "red" }}>Este produto está sem estoque.</p>
-        )}
-
-        <ButtonAtom type="button" onClick={handleAddItem}>
-          Adicionar Produto
-        </ButtonAtom>
-
-        <BuscaServico
-          servicos={servicos}
-          termo={buscaServico}
-          setTermo={setBuscaServico}
-          onSelect={(servico) => {
-            setBuscaServico(servico.nome);
-          }}
-        />
-
-        <ButtonAtom type="button" onClick={handleAddServico}>
-          Adicionar Serviço
-        </ButtonAtom>
+        <DivProduto>
+          <BuscaProduto
+            produtos={produtos}
+            termo={buscaProduto}
+            setTermo={setBuscaProduto}
+            onSelect={(produto) => {
+              setBuscaProduto(produto.nome);
+              setValue("produtoSelecionadoEstoque", produto.estoque);
+            }}
+          />
+          <DivEstoque>
+            <BoxInputMolecule
+              type="number"
+              htmlFor="quantidade"
+              id="quantidade"
+              children="Quantidade"
+              {...register("quantidade")}
+              error={!!errors.quantidade}
+              errorMessage={errors.quantidade?.message}
+              min="1"
+              max={produtoSelecionado?.estoque || ""}
+            />
+            {produtoSelecionado && <p>Estoque: {produtoSelecionado.estoque}</p>}
+          </DivEstoque>
+          <BotaoAdd onClick={handleAddItem}>
+            <AddCircleOutlineIcon />
+          </BotaoAdd>
+          {produtoSelecionado?.estoque === 0 && (
+            <p style={{ color: "red" }}>Este produto está sem estoque.</p>
+          )}
+        </DivProduto>
 
         <TabelaItensVenda
           itens={fields}

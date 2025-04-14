@@ -29,9 +29,13 @@ export const Modal = styled.div`
 export const HeaderNota = styled.div`
   text-align: center;
   margin-bottom: 16px;
-  h2 {
-    margin-bottom: 4px;
-    font-size: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  flex-direction: column;
+  img {
+    max-width: 150px;
   }
   span {
     display: block;

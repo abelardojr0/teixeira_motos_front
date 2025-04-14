@@ -1,6 +1,6 @@
-import styled from 'styled-components';
-import { cores } from '../../../utils/theme';
-import responsivo, { breakpoints } from '../../../utils/responsive';
+import styled from "styled-components";
+import { cores } from "../../../utils/theme";
+import responsive, { breakpoints } from "../../../utils/responsive";
 
 export const StyledSubtitleAdd = styled.div`
   display: flex;
@@ -14,7 +14,7 @@ export const StyledSubtitleAdd = styled.div`
     color: white;
     border-radius: 50%;
     padding: 5px;
-    ${responsivo(breakpoints.tablet)} {
+    ${responsive(breakpoints.tablet)} {
       font-size: 30px;
     }
   }
